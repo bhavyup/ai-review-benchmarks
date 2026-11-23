@@ -104,9 +104,11 @@ lock-contention variants. These count toward precision but not recall.
 
 - **Material.** Upstream template `prooflinedev/ai-review-benchmarks`
   pinned at commit `79d03777`. Case branches (`pilot/01`…`pilot/09`) sit on
-  a pinned base; every case's expected behaviour was verified by executing
-  it before any run (the defect in each of 01–06 and 09 is demonstrated by
-  a test in `reproduce/`).
+  a pinned base. The code defects (01–03, 09) and both correct changes
+  (07, 08) are demonstrated by tests in `reproduce/`; the deployment
+  cases (04–06) were verified before any run by line-by-line trace
+  against their snapshot data, the check PROTOCOL §4 prescribes for
+  snapshot cases.
 - **Isolation.** One private run repository per provider containing only
   the application — no cases, no expected findings, no harness, no other
   provider's comments. The answer key (`ANSWER-KEY.md`) lives only in this

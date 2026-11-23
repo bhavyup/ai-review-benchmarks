@@ -1,0 +1,18 @@
+--- reports.py
++++ reports.py
+@@ -21,11 +21,10 @@
+ 
+ 
+ def schedule(db, report, scheduled_at):
+-    with db:
+-        row = db.execute(
+-            "INSERT INTO deliveries (report, scheduled_at, queue) VALUES (?, ?, ?)",
+-            (report, scheduled_at, DELIVERY_QUEUE),
+-        )
++    row = db.execute(
++        "INSERT INTO deliveries (report, scheduled_at, queue) VALUES (?, ?, ?)",
++        (report, scheduled_at, DELIVERY_QUEUE),
++    )
+     return row.lastrowid
+ 
+ 

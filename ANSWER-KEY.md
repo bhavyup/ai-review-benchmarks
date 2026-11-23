@@ -48,3 +48,9 @@ contains everything needed for a catch.
   unless they carry a checkable mechanism, in which case they are graded
   on their merits (and usually land as false positives or
   unanticipated-valid after verification).
+
+## Case 09 — held-out (written 23 Nov 2026, after the rubric freeze and after all Condition A/B runs for cases 01–08 were opened)
+
+| Case | Defect ID | Expected finding |
+|---|---|---|
+| 09 | `scheduled-report-never-committed` | Removing the `with db:` wrapper from `schedule()` leaves the INSERT uncommitted (sqlite3 legacy transaction handling). The caller still receives a plausible row id, but when the connection closes — e.g. the console's short-lived `schedule` command exits — the transaction rolls back and the scheduled report silently does not exist. Proven in `reproduce/test_cases.py`: schedule on a file-backed DB, close, reopen → baseline has 1 row, patched has 0. A catch must name the missing commit / rollback-on-close mechanism. "Needs a transaction" without the consequence, or generic style remarks, do not earn the catch. |

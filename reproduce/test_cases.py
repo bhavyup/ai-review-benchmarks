@@ -198,5 +198,37 @@ class TestCase08SummaryTotal(VariantTest):
         )
 
 
+class TestCase09ScheduleCommit(VariantTest):
+    """09 is the held-out case, written after the scoring rubric was frozen
+    and of a different kind from 01-08: it removes the transaction wrapper
+    from schedule(), leaving the INSERT uncommitted. A short-lived process
+    (the console's schedule command) exits, the connection closes, and the
+    row is rolled back — while the caller still receives a plausible id."""
+
+    case = "09"
+
+    def schedule_then_reopen(self, reports):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "console.sqlite"
+            db = sqlite3.connect(path)
+            reports.migrate(db)
+            row_id = reports.schedule(db, "r0", 1000)
+            db.close()
+            db2 = sqlite3.connect(path)
+            count = db2.execute("SELECT count(*) FROM deliveries").fetchone()[0]
+            db2.close()
+            return row_id, count
+
+    def test_baseline_schedule_persists(self):
+        row_id, count = self.schedule_then_reopen(self.base)
+        self.assertEqual(row_id, 1)
+        self.assertEqual(count, 1)
+
+    def test_patched_schedule_is_silently_lost(self):
+        row_id, count = self.schedule_then_reopen(self.patched)
+        self.assertEqual(row_id, 1)  # the caller still gets a plausible id
+        self.assertEqual(count, 0)   # ...for a row that was never committed
+
+
 if __name__ == "__main__":
     unittest.main()

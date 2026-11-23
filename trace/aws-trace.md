@@ -16,7 +16,11 @@ evidence saved → stacks deleted.
 2. **CI check.** The starter's check workflow ("Check the sample
    application") passed on PR #1 —
    [run 45200153853](https://github.com/upreti-labs/ai-review-benchmarks/actions/runs/45200153853)
-   (success, 6s) — and on the `main` pushes leading up to it.
+   (success, 6s). It also passed on the deployed commit itself: the push
+   of `03919e5` to `main` ran the same check in
+   [run 45195891744](https://github.com/upreti-labs/ai-review-benchmarks/actions/runs/45195891744)
+   (success), so the revision that was deployed is a revision that was
+   checked.
 3. **One-time setup.** The account already had GitHub's OIDC identity
    provider, so none was created. The bootstrap stack
    `ai-review-bench-github` (template `aws/github-roles.yaml`) created the

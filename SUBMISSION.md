@@ -6,10 +6,10 @@ Developer Tools application · **Date:** 23 November 2026
 ## What this is
 
 A controlled benchmark of five AI code reviewers — Proofline, Greptile,
-CodeRabbit, Qodo and Sourcery — run against the same nine pull requests on
-the sample application from `prooflinedev/ai-review-benchmarks` (pinned at
-commit `79d03777`), plus one original held-out case written for this
-benchmark. The scoring protocol was committed before any reviewer was
+CodeRabbit, Qodo and Sourcery — run against the same nine cases on the
+sample application from `prooflinedev/ai-review-benchmarks` (pinned at
+commit `79d03777`): the template's eight changes plus one original
+held-out case written for this benchmark. The scoring protocol was committed before any reviewer was
 installed (pre-registration commit `df47bb1`); grading was per claim,
 against that frozen rubric, on copies with provider names replaced by
 random codes.
@@ -34,7 +34,10 @@ is the gap.
 2. **`PROTOCOL.md`** — the pre-registered protocol; §4 is the frozen
    scoring rubric. It has never been amended.
 3. **`reproduce/test_cases.py`** — the executable ground truth: 12 checks
-   demonstrating every planted defect and both correct changes.
+   demonstrating the code defects (01–03), the held-out case (09) and both
+   correct changes (07, 08). The deployment cases 04–06 are verified by
+   line-by-line trace against their snapshot data, the check PROTOCOL §4
+   prescribes for snapshot cases.
 4. **`bench/results/`** — generated score and coverage tables;
    **`bench/grades.csv`** — every graded claim with its reason;
    **`bench/raw/`** — every review, verbatim.

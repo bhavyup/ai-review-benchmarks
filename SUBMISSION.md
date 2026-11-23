@@ -1,0 +1,55 @@
+# Submission — AI Review Benchmarks
+
+**Author:** Bhavya Upreti · **For:** Proofline Software Engineering Intern,
+Developer Tools application · **Date:** 23 November 2026
+
+## What this is
+
+A controlled benchmark of five AI code reviewers — Proofline, Greptile,
+CodeRabbit, Qodo and Sourcery — run against the same nine pull requests on
+the sample application from `prooflinedev/ai-review-benchmarks` (pinned at
+commit `79d03777`), plus one original held-out case written for this
+benchmark. The scoring protocol was committed before any reviewer was
+installed (pre-registration commit `df47bb1`); grading was per claim,
+against that frozen rubric, on copies with provider names replaced by
+random codes.
+
+## The finding in one paragraph
+
+On ordinary code defects, all five reviewers performed well (3 of 3 for
+every provider, and 5 of 5 on the held-out case). On three changes whose
+defects exist only against live deployment facts, the same reviewers
+caught **5 of 15** observations from the code alone — and not one of them,
+in 15 observations, said the change could not be judged without deployment
+information. Given the deployment snapshot in the PR body, they caught
+**13 of 14** completed observations of the same defects. The evidence is
+the bottleneck, and the missing "I don't have what I need to judge this"
+is the gap.
+
+## How to review this PR
+
+1. **`REPORT.md`** — the full report: headline table with denominators,
+   results by condition, one result traced end to end, methods, plan
+   reality, limitations.
+2. **`PROTOCOL.md`** — the pre-registered protocol; §4 is the frozen
+   scoring rubric. It has never been amended.
+3. **`reproduce/test_cases.py`** — the executable ground truth: 12 checks
+   demonstrating every planted defect and both correct changes.
+4. **`bench/results/`** — generated score and coverage tables;
+   **`bench/grades.csv`** — every graded claim with its reason;
+   **`bench/raw/`** — every review, verbatim.
+
+## Honest notes
+
+- One observation is still outstanding: Proofline's review of case 05
+  with the snapshot had not arrived when the report was written. It is
+  excluded from Proofline's denominators in the report and will be graded
+  as a late observation if it lands. Proofline also returned no review on
+  two other PRs; both are recorded in the report, not hidden.
+- The deployment trace described in `PROTOCOL.md` §7 (PR → CI → deploy →
+  verify → delete) is being added as a follow-up commit on this branch,
+  with the workflow link and receipt saved as evidence.
+- Total spend: **$0**. No payment card was entered anywhere; four of the
+  five providers were run on free trials after their advertised free
+  tiers turned out not to cover private organisation repositories — the
+  report's plan-reality table has the details.

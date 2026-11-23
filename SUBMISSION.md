@@ -47,8 +47,9 @@ is the gap.
   as a late observation if it lands. Proofline also returned no review on
   two other PRs; both are recorded in the report, not hidden.
 - The deployment trace described in `PROTOCOL.md` §7 (PR → CI → deploy →
-  verify → delete) is being added as a follow-up commit on this branch,
-  with the workflow link and receipt saved as evidence.
+  verify → delete) was completed on 23 Nov 2026 and is committed on this
+  branch as `trace/aws-trace.md`, with the workflow links and the live
+  invocation receipt.
 - Total spend: **$0**. No payment card was entered anywhere; four of the
   five providers were run on free trials after their advertised free
   tiers turned out not to cover private organisation repositories — the

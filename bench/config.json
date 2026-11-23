@@ -41,12 +41,12 @@
     },
     {
       "id": "qodo",
-      "method": "TBD at install: free plan or self-hosted PR-Agent, pinned model",
+      "method": "hosted app; NO free tier exists (their pricing page says so) - account is on the free 14-day trial, no card, unlimited reviews during trial; reviews pause when the trial ends",
       "run_repo": "upreti-labs/run-qodo"
     },
     {
       "id": "sourcery",
-      "method": "hosted app, free plan",
+      "method": "hosted app; free plan is public-repos-only, so the account runs on the 14-day Team trial started without a card (ends 7 Dec 2026); private repos covered during trial",
       "run_repo": "upreti-labs/run-sourcery"
     }
   ],

@@ -1,9 +1,1 @@
-__pycache__/
-*.py[cod]
-/reports.sqlite
-/reports.sqlite-*
-.DS_Store
-
-# benchmark harness
-bench/private/
-bench/**/__pycache__/
+*.bak-*
